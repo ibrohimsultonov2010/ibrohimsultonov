@@ -1,0 +1,303 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Bosh sahifa - Ibrohim Sultonov{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center min-vh-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content text-white">
+                    <h1 class="display-4 fw-bold mb-4">
+                        {% if personal_info %}
+                            {{ personal_info.name }}
+                        {% else %}
+                            Salom, men dasturchiman
+                        {% endif %}
+                    </h1>
+                    <h2 class="h3 mb-4 text-light">
+                        {% if personal_info %}
+                            {{ personal_info.title }}
+                        {% else %}
+                            Full Stack Developer
+                        {% endif %}
+                    </h2>
+                    <p class="lead mb-4">
+                        {% if personal_info %}
+                            {{ personal_info.description }}
+                        {% else %}
+                            Zamonaviy web texnologiyalari bilan ishlaydigan tajribali dasturchi. 
+                            Chiroyli va funksional web saytlar yaratishda mutaxassis.
+                        {% endif %}
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'app:projects' %}" class="btn btn-light btn-lg me-3">
+                            <i class="fas fa-eye me-2"></i>Loyihalarim
+                        </a>
+                        <a href="{% url 'app:contact' %}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-envelope me-2"></i>Aloqa
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-image">
+                    {% if personal_info and personal_info.profile_image %}
+                        <div class="profile-image-container">
+                            <img src="{{ personal_info.profile_image.url }}" alt="{{ personal_info.name }}" class="profile-image">
+                        </div>
+                    {% else %}
+                        <div class="profile-image-container">
+                            <img src="{% static 'images/ibrohim301-logo.png' %}" alt="IBROHIM301" class="profile-image">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">Ko'nikmalarim</h2>
+                <p class="lead text-muted">Men ishlatadigan texnologiyalar va ko'nikmalar</p>
+            </div>
+        </div>
+        
+        {% if skills %}
+        <div class="row">
+            {% for skill in skills %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="skill-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        {% if skill.icon %}
+                            <i class="{{ skill.icon }} fa-3x text-primary mb-3"></i>
+                        {% else %}
+                            <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                        {% endif %}
+                        <h5 class="card-title">{{ skill.name }}</h5>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{ skill.proficiency }}%">
+                                {{ skill.proficiency }}%
+                            </div>
+                        </div>
+                        <small class="text-muted">{{ skill.get_category_display }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="text-muted">Ko'nikmalar hali qo'shilmagan</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">Asosiy loyihalar</h2>
+                <p class="lead text-muted">Eng yaxshi va muhim loyihalarim</p>
+            </div>
+        </div>
+        
+        {% if projects %}
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="project-card card h-100 border-0 shadow-sm">
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-project-diagram fa-3x text-muted"></i>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                        <div class="mb-3">
+                            {% for tech in project.technologies.split|slice:":3" %}
+                                <span class="badge bg-primary me-1">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <div class="d-flex justify-content-between">
+                            {% if project.github_url %}
+                                <a href="{{ project.github_url }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
+                            {% endif %}
+                            {% if project.live_url %}
+                                <a href="{{ project.live_url }}" class="btn btn-sm btn-primary" target="_blank">
+                                    <i class="fas fa-external-link-alt me-1"></i>Ko'rish
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="text-muted">Loyihalar hali qo'shilmagan</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'app:projects' %}" class="btn btn-outline-primary btn-lg">
+                Barcha loyihalar <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+{% if experiences %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">Ish tajribasi</h2>
+                <p class="lead text-muted">Men ishlagan kompaniyalar va lavozimlar</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for experience in experiences %}
+            <div class="col-lg-6 mb-4">
+                <div class="experience-card card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h5 class="card-title mb-1">{{ experience.position }}</h5>
+                                <h6 class="text-primary">{{ experience.company }}</h6>
+                            </div>
+                            <span class="badge bg-success">
+                                {% if experience.current %}
+                                    Hozirgi
+                                {% else %}
+                                    {{ experience.start_date|date:"Y" }} - {{ experience.end_date|date:"Y" }}
+                                {% endif %}
+                            </span>
+                        </div>
+                        <p class="card-text">{{ experience.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Contact CTA Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center text-white">
+                <h2 class="display-5 fw-bold mb-4">Loyiha ustida ishlashni xohlaysizmi?</h2>
+                <p class="lead mb-4">Men bilan bog'laning va loyihangiz haqida gapirib ko'ring</p>
+                <a href="{% url 'app:contact' %}" class="btn btn-light btn-lg">
+                    <i class="fas fa-paper-plane me-2"></i>Xabar yozing
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AJAX Chat Section -->
+<section class="py-5" id="chat-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <i class="fas fa-comments"></i> Umumiy Chat
+          </div>
+          <div class="card-body" style="max-height:300px; overflow-y:auto; background:#f8f9fa;" id="chat-messages">
+            <div class="text-center text-muted" id="chat-loading">Yuklanmoqda...</div>
+          </div>
+          <div class="card-footer">
+            <form id="chat-form" class="d-flex gap-2">
+              <input type="text" id="chat-username" class="form-control" placeholder="Ismingiz" maxlength="50" required>
+              <input type="text" id="chat-message" class="form-control" placeholder="Xabar yozing..." maxlength="500" required>
+              <button type="submit" class="btn btn-primary">Yuborish</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// CSRF token olish uchun funksiya
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function loadChatMessages() {
+  fetch('/chat/api/')
+    .then(r => r.json())
+    .then(data => {
+      const box = document.getElementById('chat-messages');
+      if (data.messages.length === 0) {
+        box.innerHTML = '<div class="text-center text-muted">Xabarlar yo‘q</div>';
+        return;
+      }
+      box.innerHTML = data.messages.map(m =>
+        `<div><b>${m.username}</b>: ${m.message} <small class='text-muted'>(${m.timestamp})</small></div>`
+      ).join('');
+      box.scrollTop = box.scrollHeight;
+    });
+}
+
+document.getElementById('chat-form').onsubmit = function(e) {
+  e.preventDefault();
+  const username = document.getElementById('chat-username').value.trim() || 'Anonim';
+  const message = document.getElementById('chat-message').value.trim();
+  if (!message) return;
+  fetch('/chat/api/', {
+    method: 'POST',
+    headers: {'X-CSRFToken': getCookie('csrftoken')},
+    body: new URLSearchParams({username, message})
+  }).then(() => {
+    document.getElementById('chat-message').value = '';
+    loadChatMessages();
+  });
+};
+
+timer = setInterval(loadChatMessages, 3000);
+window.onload = loadChatMessages;
+</script>
+{% endblock %} 

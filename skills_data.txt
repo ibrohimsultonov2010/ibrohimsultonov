@@ -1,0 +1,5 @@
+Python,programming,90,fab fa-python,1
+JavaScript,programming,50,fab fa-js-square,2
+CSS,framework,100,fab fa-css3-alt,3
+HTML,framework,100,fab fa-html5,4
+Bootstrap,framework,100,fab fa-bootstrap,5 

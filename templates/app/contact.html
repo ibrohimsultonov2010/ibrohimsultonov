@@ -1,0 +1,288 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Aloqa - Ibrohim Sultonov{% endblock %}
+
+{% block content %}
+<!-- Contact Hero Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold mb-4">Aloqa</h1>
+                <p class="lead text-muted">Men bilan bog'laning</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-lg-5 mb-5">
+                <div class="contact-info">
+                    <h3 class="h4 mb-4">Aloqa ma'lumotlari</h3>
+                    
+                    {% if personal_info %}
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Email</h6>
+                                <p class="mb-0 text-muted">{{ personal_info.email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Telefon</h6>
+                                <p class="mb-0 text-muted">{{ personal_info.phone }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Manzil</h6>
+                                <p class="mb-0 text-muted">{{ personal_info.location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Email</h6>
+                                <p class="mb-0 text-muted">example@email.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Telefon</h6>
+                                <p class="mb-0 text-muted">+998 90 123 45 67</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item mb-4">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Manzil</h6>
+                                <p class="mb-0 text-muted">Toshkent, O'zbekiston</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Social Links -->
+                    <div class="social-links mt-5">
+                        <h6 class="mb-3">Ijtimoiy tarmoqlar</h6>
+                        <div class="social-grid">
+                            {% for link in personal_info.social_links.all %}
+                                <a href="{{ link.url }}" class="social-btn social-{{ link.name|lower }}" target="_blank">
+                                    <span class="icon"><i class="{{ link.icon }}"></i></span>
+                                    <span class="label">{{ link.name }}</span>
+                                </a>
+                            {% empty %}
+                                <span class="text-muted">Ijtimoiy tarmoqlar qo‘shilmagan</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-7">
+                <div class="contact-form">
+                    <h3 class="h4 mb-4">Xabar yozing</h3>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="post" id="contactForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.name.id_for_label }}" class="form-label">Ismingiz *</label>
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                    <div class="text-danger small">{{ form.name.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">Email *</label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                    <div class="text-danger small">{{ form.email.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.subject.id_for_label }}" class="form-label">Mavzu *</label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}
+                                <div class="text-danger small">{{ form.subject.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-4">
+                            <label for="{{ form.message.id_for_label }}" class="form-label">Xabar *</label>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                                <div class="text-danger small">{{ form.message.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Xabar yuborish
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section (Optional) -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="h4 mb-4">Manzilimiz</h3>
+                <div class="map-placeholder bg-white rounded shadow-sm" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <div class="text-center">
+                        <i class="fas fa-map-marked-alt fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">Xarita bu yerda ko'rsatiladi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
+
+<style>
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 18px;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.social-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 0 12px 0;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    font-weight: 500;
+    font-size: 1.01rem;
+    border: 3px solid #e9ecef;
+    background: #fff;
+    color: #222;
+    transition: transform 0.18s, box-shadow 0.18s, background 0.3s, color 0.3s, border 0.3s;
+    text-decoration: none !important;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.social-btn .icon {
+    font-size: 2.1em;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(.68,-0.55,.27,1.55), color 0.3s;
+}
+.social-btn .label {
+    font-size: 0.97em;
+    margin-top: 2px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-transform: capitalize;
+}
+.social-btn:active {
+    transform: scale(0.97);
+}
+/* Ranglar va hover */
+.social-github { border-color: #333; color: #333; }
+.social-github .icon { color: #333; }
+.social-github:hover { background: #333; color: #fff; border-color: #333; }
+.social-github:hover .icon { color: #fff; transform: rotate(-15deg) scale(1.25); }
+
+.social-linkedin { border-color: #0077b5; color: #0077b5; }
+.social-linkedin .icon { color: #0077b5; }
+.social-linkedin:hover { background: #0077b5; color: #fff; border-color: #0077b5; }
+.social-linkedin:hover .icon { color: #fff; transform: rotate(10deg) scale(1.25); }
+
+.social-instagram { border-color: #d6249f; color: #d6249f; }
+.social-instagram .icon { color: #d6249f; }
+.social-instagram:hover { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: #fff; border-color: #fd5949; }
+.social-instagram:hover .icon { color: #fff; transform: rotate(-10deg) scale(1.25); }
+
+.social-facebook { border-color: #1877f3; color: #1877f3; }
+.social-facebook .icon { color: #1877f3; }
+.social-facebook:hover { background: #1877f3; color: #fff; border-color: #1877f3; }
+.social-facebook:hover .icon { color: #fff; transform: rotate(10deg) scale(1.25); }
+
+.social-youtube { border-color: #ff0000; color: #ff0000; }
+.social-youtube .icon { color: #ff0000; }
+.social-youtube:hover { background: #ff0000; color: #fff; border-color: #ff0000; }
+.social-youtube:hover .icon { color: #fff; transform: rotate(-10deg) scale(1.25); }
+
+.social-twitter { border-color: #1da1f2; color: #1da1f2; }
+.social-twitter .icon { color: #1da1f2; }
+.social-twitter:hover { background: #1da1f2; color: #fff; border-color: #1da1f2; }
+.social-twitter:hover .icon { color: #fff; transform: rotate(10deg) scale(1.25); }
+
+.social-whatsapp { border-color: #25d366; color: #25d366; }
+.social-whatsapp .icon { color: #25d366; }
+.social-whatsapp:hover { background: #25d366; color: #fff; border-color: #25d366; }
+.social-whatsapp:hover .icon { color: #fff; transform: rotate(-10deg) scale(1.25); }
+
+.social-discord { border-color: #5865f2; color: #5865f2; }
+.social-discord .icon { color: #5865f2; }
+.social-discord:hover { background: #5865f2; color: #fff; border-color: #5865f2; }
+.social-discord:hover .icon { color: #fff; transform: rotate(10deg) scale(1.25); }
+
+.social-telegram { border-color: #229ed9; color: #229ed9; }
+.social-telegram .icon { color: #229ed9; }
+.social-telegram:hover { background: #229ed9; color: #fff; border-color: #229ed9; }
+.social-telegram:hover .icon { color: #fff; transform: rotate(-10deg) scale(1.25); }
+</style> 

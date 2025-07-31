@@ -1,0 +1,29 @@
+# PythonAnywhere uchun minimal kutubxonalar ro'yxati
+# Portfolio loyihasi uchun faqat kerakli kutubxonalar
+
+# Asosiy Django
+Django==5.2.2
+
+# Rasm bilan ishlash uchun (ImageField uchun)
+Pillow==11.2.1
+
+# Ma'lumotlar bazasi (PythonAnywhere da mavjud)
+# sqlite3 - Python bilan birga keladi
+
+# Qo'shimcha Django kutubxonalar (ixtiyoriy)
+django-crispy-forms==2.4
+crispy-bootstrap5==2025.6
+
+# Xavfsizlik va xatolarni boshqarish
+# Bu kutubxonalar PythonAnywhere da mavjud yoki kerak emas
+
+# Eslatma: PythonAnywhere da quyidagilar allaqachon mavjud:
+# - Python 3.x
+# - pip
+# - virtualenv
+# - git
+# - sqlite3
+# - asgiref, blinker va boshqa Django dependencies
+
+# O'rnatish buyrug'i:
+# pip install -r requirements_minimal.txt 

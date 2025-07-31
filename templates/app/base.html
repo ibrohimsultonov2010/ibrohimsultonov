@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Ibrohim Sultonov - Portfolio{% endblock %}</title>
+
+
+    <!-- SEO Meta Teglar -->
+<title>Ibrohim Sultonov - Web Dasturchi va Portfolio</title>
+<meta name="description" content="Ibrohim Sultonov - tajribali web dasturchi va dizayner. Portfolio, xizmatlar va aloqa sahifasi.">
+<meta name="keywords" content="Ibrohim Sultonov, portfolio, web dasturchi, dizayner, grafik dizayn, Toshkent, O'zbekiston, Python, Django, frontend, backend">
+<meta name="author" content="Ibrohim Sultonov">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Ibrohim Sultonov - Portfolio va Web Dasturchi">
+<meta property="og:description" content="Ibrohim Sultonovning portfolio va xizmatlari. Web dasturchi va dizayner. Portfolio, aloqa va xizmatlar haqida to‘liq ma'lumot.">
+<meta property="og:image" content="{% static 'images/ibrohim301-logo.png' %}">
+<meta property="og:url" content="https://ibrohim.uz/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ibrohim Sultonov - Portfolio va Web Dasturchi">
+<meta name="twitter:description" content="Ibrohim Sultonov - tajribali web dasturchi va dizayner. Portfolio va xizmatlar bilan tanishing.">
+<meta name="twitter:image" content="{% static 'images/ibrohim301-logo.png' %}">
+<link rel="canonical" href="https://ibrohim.uz/">
+
+
+    <!-- ✅ SEO Meta Tags -->
+    <meta name="description" content="Ibrohim Sultonov - tajribali web dasturchi va grafik dizayner. Portfolio, xizmatlar, ish tajribasi, aloqa va loyihalar haqida batafsil ma'lumot.">
+    <meta name="keywords" content="Ibrohim Sultonov, portfolio, grafik dizayn, web dasturlash, freelance dasturchi, dizayner, logo dizayni, Django, HTML, CSS, JavaScript, Uzbekistan, Toshkent">
+    <meta name="author" content="Ibrohim Sultonov">
+    <meta name="robots" content="index, follow">
+
+    <!-- ✅ Open Graph (Telegram, Facebook) -->
+    <meta property="og:title" content="Ibrohim Sultonov - Portfolio">
+    <meta property="og:description" content="Web va grafik dizayn bo‘yicha mutaxassis. Portfolio, aloqa va xizmatlar haqida to‘liq ma'lumot.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ibrohim.uz/">
+    <meta property="og:image" content="{% static 'images/ibrohim301-logo.png' %}">
+    <meta property="og:locale" content="uz_UZ">
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ibrohim Sultonov - Portfolio">
+    <meta name="twitter:description" content="Web dasturchi va grafik dizayner. Portfolio va xizmatlar bilan tanishing.">
+    <meta name="twitter:image" content="{% static 'images/ibrohim301-logo.png' %}">
+
+    <!-- ✅ Canonical link -->
+    <link rel="canonical" href="https://ibrohim.uz/">
+
+    <!-- ✅ Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'app:home' %}">
+                Ibrohim Sultonov
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:home' %}">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:about' %}">Haqida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:projects' %}">Loyihalar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'app:contact' %}">Aloqa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary btn-sm order-btn" href="{% url 'app:contact' %}">
+                            <i class="fas fa-shopping-cart me-1"></i>Buyurtma berish
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Ibrohim Sultonov</h5>
+                    <p class="mb-0">Zamonaviy va chiroyli portfolio loyihasi</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Portfolio. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

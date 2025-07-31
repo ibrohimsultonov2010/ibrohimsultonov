@@ -1,0 +1,15 @@
+{% extends "app/base.html" %}
+{% block content %}
+<h2>Umumiy Chat</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Ismingiz" required>
+    <input type="text" name="message" placeholder="Xabar yozing..." required>
+    <button type="submit">Yuborish</button>
+</form>
+<div style="margin-top:20px; max-height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px; background:#fafafa;">
+    {% for msg in messages %}
+        <p><b>{{ msg.username }}</b>: {{ msg.message }} <small>({{ msg.timestamp|date:"H:i:s" }})</small></p>
+    {% endfor %}
+</div>
+{% endblock %} 

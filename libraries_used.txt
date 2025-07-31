@@ -1,0 +1,150 @@
+IBROHIM SULTONOV PORTFOLIO - ISHLATILGAN KUTUBXONALAR VA TEXNOLOGIYALAR
+================================================================
+
+ASOSIY FRAMEWORK:
+================
+- Django 5.2.2 (Python web framework)
+- Python 3.13.5 (Dasturlash tili)
+
+FRONTEND KUTUBXONALAR (CDN):
+============================
+- Bootstrap 5.3.0 (CSS framework)
+- Font Awesome 6.4.0 (Icon kutubxonasi)
+- Google Fonts - Poppins (Shriftlar)
+- jQuery 3.6.0 (JavaScript kutubxonasi)
+
+MA'LUMOTLAR BAZASI:
+===================
+- SQLite3 (Standart Django ma'lumotlar bazasi)
+
+DJANGO KOMPONENTLARI:
+====================
+- Django Admin (Ma'lumotlarni boshqarish paneli)
+- Django ORM (Ma'lumotlar bazasi bilan ishlash)
+- Django Forms (Formalar yaratish)
+- Django Templates (HTML shablonlar)
+- Django Static Files (CSS, JS, rasmlar)
+- Django Media Files (Foydalanuvchi yuklangan fayllar)
+- Django Messages (Xabar ko'rsatish)
+- Django CSRF (Xavfsizlik)
+- Django Management Commands (Maxsus buyruqlar)
+
+QO'SHIMCHA KUTUBXONALAR:
+========================
+- Pillow (Rasm bilan ishlash - ImageField uchun)
+- Django Debug Toolbar (Rivojlanish uchun - DEBUG=True)
+
+LOYIHA TUZILISHI:
+=================
+portfolll/
+├── app/                    # Asosiy ilova
+│   ├── models.py          # 6 ta model (PersonalInfo, Skill, Project, Experience, Education, Contact)
+│   ├── views.py           # 5 ta view (home, about, projects, contact, contact_ajax)
+│   ├── forms.py           # Contact form
+│   ├── admin.py           # Admin panel sozlamalari
+│   ├── urls.py            # URL yo'nalishlari
+│   └── management/        # Maxsus buyruqlar
+│       └── commands/
+│           ├── load_skills.py
+│           ├── load_personal_info.py
+│           ├── load_projects.py
+│           ├── load_experience.py
+│           ├── load_education.py
+│           └── load_all_data.py
+├── templates/app/         # 4 ta HTML template (base, home, about, projects, contact)
+├── static/               # CSS, JS, images
+│   ├── css/style.css     # Custom CSS stillar
+│   └── js/main.js        # Custom JavaScript
+└── project/              # Django sozlamalari
+    ├── settings.py       # Loyiha sozlamalari
+    └── urls.py           # Asosiy URL yo'nalishlari
+
+CSS/JS XUSUSIYATLARI:
+=====================
+- Custom CSS (Zamonaviy animatsiyalar)
+- Vanilla JavaScript (Interactive effektlar)
+- CSS Grid/Flexbox (Responsive dizayn)
+- CSS Animations (Keyframes va transitions)
+- CSS Gradients (Chiroyli ranglar)
+- CSS Glassmorphism (Zamonaviy dizayn)
+- CSS Backdrop Filter (Blur effektlar)
+
+ANIMATSIYALAR:
+==============
+- Fade In/Out
+- Slide Up/Down
+- Scale Transform
+- Rotate Effects
+- Glow Effects
+- Shimmer Effects
+- Hover Animations
+- Staggered Animations
+- Loading Animations
+
+RESPONSIVE DIZAYN:
+==================
+- Mobile First approach
+- Bootstrap Grid System
+- Custom Media Queries
+- Flexible Images
+- Touch-friendly buttons
+
+XAVFSIZLIK:
+===========
+- CSRF Protection
+- Form Validation
+- SQL Injection Protection
+- XSS Protection
+- Secure File Uploads
+
+DEVELOPMENT TOOLS:
+==================
+- Django Debug Mode
+- Static File Serving
+- Media File Handling
+- Database Migrations
+- Management Commands
+
+PRODUCTION READY:
+=================
+- Static File Collection
+- Database Optimization
+- Security Settings
+- Error Handling
+- Logging Configuration
+
+YARATILGAN FAYLLAR:
+===================
+- skills_data.txt (Ko'nikmalar ro'yxati)
+- libraries_used.txt (Bu fayl - kutubxonalar ro'yxati)
+- load_*.py (Ma'lumotlarni yuklash buyruqlari)
+
+SAHIFALAR:
+==========
+1. Bosh sahifa (/) - Hero section, ko'nikmalar, loyihalar
+2. Haqida (/about/) - Batafsil ma'lumot, tajriba, ta'lim
+3. Loyihalar (/projects/) - Barcha loyihalar ro'yxati
+4. Aloqa (/contact/) - Aloqa formasi va ma'lumotlar
+5. Admin panel (/admin/) - Ma'lumotlarni boshqarish
+
+MA'LUMOTLAR BAZASI MODELLARI:
+==============================
+1. PersonalInfo - Shaxsiy ma'lumotlar
+2. Skill - Ko'nikmalar va foizlar
+3. Project - Loyihalar va texnologiyalar
+4. Experience - Ish tajribasi
+5. Education - Ta'lim ma'lumotlari
+6. Contact - Aloqa xabarlari
+
+BUYRUQLAR:
+==========
+- python manage.py runserver (Loyihani ishga tushirish)
+- python manage.py load_all_data (Barcha ma'lumotlarni yuklash)
+- python manage.py load_skills (Faqat ko'nikmalarni yuklash)
+- python manage.py makemigrations (Migratsiyalar yaratish)
+- python manage.py migrate (Migratsiyalarni qo'llash)
+- python manage.py collectstatic (Static fayllarni yig'ish)
+
+Loyiha yaratilgan sana: 19.07.2025
+Dasturchi: Ibrohim Sultonov
+Texnologiyalar: Django, Python, HTML, CSS, JavaScript, Bootstrap 
